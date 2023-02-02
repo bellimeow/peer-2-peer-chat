@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="PrimaryColor">#89253e</Color>
+    <Color x:Key="PrimaryLightColor">#BB3355</Color>
+    <Color x:Key="SecondaryColor">#3a6186</Color>
+    <Color x:Key="SecondaryLightColor">#FF4788c8</Color>
+    <Color x:Key="ChatBoxColor">#46494D</Color>
+    <Color x:Key="ChatBackgroundColor">#2C2F33</Color>
+
+</ResourceDictionary>

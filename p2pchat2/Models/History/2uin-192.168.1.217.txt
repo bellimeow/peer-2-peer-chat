@@ -1,0 +1,21 @@
+{"messages":[
+{
+  "Username": "2uin",
+  "Message": "HEEEEJ",
+  "Ip": null,
+  "Time": "2021-12-14T13:46:33.0668494+01:00",
+  "Count": 0,
+  "ReadyToSend": false,
+  "Command": 0
+}
+,
+{
+  "Username": "Anonymous Penguin",
+  "Message": "HEJSAN!",
+  "Ip": null,
+  "Time": "2021-12-14T13:46:39.1911555+01:00",
+  "Count": 0,
+  "ReadyToSend": false,
+  "Command": 0
+}
+]}

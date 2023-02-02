@@ -1,0 +1,318 @@
+﻿<UserControl x:Class="p2pchat2.Views.StartView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:p2pchat2.ViewModels"
+      xmlns:views="clr-namespace:p2pchat2.Views"
+      xmlns:local="clr-namespace:p2pchat2.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:StartViewModel x:Key="startVM"/>
+    </UserControl.Resources>
+    <Grid Background="#2C2F33" DataContext="{DynamicResource startVM}">
+        <Grid Visibility="{Binding StartViewVisible}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Center">
+                <Button Content="Connect" 
+                        Name="ConnectButton"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding ConnectButtonCommand}"
+                        HorizontalAlignment="Left" 
+                        Height="29" 
+                        Margin="240,291,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="120" 
+                        RenderTransformOrigin="0.452,6.177"/>
+                <Button Content="Listen" 
+                        x:Name="ListenButton"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding ListenButtonCommand}"
+                        HorizontalAlignment="Left" 
+                        Width="120" Height="29" 
+                        Margin="380,291,0,0" 
+                        VerticalAlignment="Top" 
+                        RenderTransformOrigin="0.452,6.177"/>
+                <Button Content="Back"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding BackToStartButtonCommand}"
+                        HorizontalAlignment="Right"
+                        Visibility="{Binding BackButtonVisible}"
+                        VerticalAlignment="Bottom" 
+                        Width="50" Margin="0,0,509,10"/>
+                <Button Content="Chat History" 
+                        Width="90" Height="26"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding ChatHistoryButtonCommand}"
+                        Margin="629,396,0,0"/>
+                <TextBox HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" 
+                     Background="White" 
+                     Text="{Binding Username}" 
+                     TextWrapping="Wrap" 
+                     Width="123" 
+                     Margin="307,174,0,0" />
+                <TextBox HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" 
+                     Background="White" 
+                     Text="{Binding IP}" 
+                     TextWrapping="Wrap" 
+                     Width="123" 
+                     Margin="307,225,0,0"/>
+                <TextBox HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" 
+                     Text="{Binding Port}" 
+                     TextWrapping="Wrap" 
+                     Width="123" 
+                     Margin="307,256,0,0"/>
+                <Label Content="Welcome to awesome chat" 
+                   FontSize="20" 
+                   Foreground="White"
+                   HorizontalContentAlignment="Center" 
+                   HorizontalAlignment="Left" 
+                   Margin="196,84,0,0" 
+                   VerticalAlignment="Top" 
+                   Width="342"/>
+                <Label Content="username" 
+                   Foreground="White"
+                   HorizontalAlignment="Left" 
+                   Margin="234,170,0,0" 
+                   VerticalAlignment="Top"/>
+                <Label Content="IP-address" 
+                   Foreground="White"
+                   HorizontalAlignment="Left" 
+                   Margin="234,221,0,0" 
+                   VerticalAlignment="Top"/>
+                <Label Content="port" 
+                   Foreground="White"
+                   HorizontalAlignment="Left"
+                   Margin="234,252,0,0" 
+                   VerticalAlignment="Top"/>
+                <Label Content="Your IP:" 
+                Foreground="White"
+                HorizontalAlignment="Left" 
+                Margin="579,20,0,0" 
+                VerticalAlignment="Top" Width="50" Height="41" RenderTransformOrigin="-2.14,0.756"/>
+                <Label Content="{Binding PersonalIp}"
+                Foreground="White"
+                HorizontalAlignment="Left" 
+                Margin="629,20,0,0" 
+                VerticalAlignment="Top" Height="70" Width="76"/>
+                <Popup Name="myPopup" IsOpen="{Binding PopupVisible}" Placement="Center">
+                    <Grid Height="150" Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="{StaticResource SecondaryColor}" Offset="0" />
+                                    <GradientStop Color="{StaticResource PrimaryColor}" Offset="1" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Margin="26,28,0,0" 
+                               x:Name="AcceptText"
+                               Background="Transparent"
+                               Foreground="White"
+                               Text="{Binding PopupText}"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center" Width="222" Height="55" Grid.ColumnSpan="2" />
+
+                        <Button Content="Accept" 
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding AcceptButtonCommand}"
+                            HorizontalAlignment="Center" 
+                            Margin="40,92,0,0" 
+                            VerticalAlignment="Top" Height="26" Width="52" Grid.Column="0"/>
+                        <Button Content="Deny"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding DenyButtonCommand}"
+                            HorizontalAlignment="Center" 
+                            Margin="0,92,40,0" 
+                            VerticalAlignment="Top" 
+                            Height="26" Width="52" Grid.Column="1"/>
+
+                    </Grid>
+                </Popup>
+                <TextBlock Text="{Binding ErrorText}" 
+                   Foreground="White"
+                   Visibility="{Binding ErrorTextVisible}"
+                   HorizontalAlignment="Left" 
+                   Margin="235,126,0,0"
+                   TextAlignment="Center"
+                   TextWrapping="WrapWithOverflow"
+                   VerticalAlignment="Top" 
+                   Height="33" Width="264" Grid.Column="1"/>
+
+
+            </Grid>
+        </Grid>
+        <Grid Visibility="{Binding SearchHistoryBoxVisibility}" Margin="0,396,599,0">
+            <TextBox HorizontalAlignment="Left" 
+                     Margin="8,0,0,0" 
+                     Text="{Binding SearchHistoryInput}"
+                     Background="White"
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Center" 
+                     Width="120"/>
+            <Button Content="Search"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding SearchChatHistoryCommand}" 
+                    HorizontalAlignment="Left" 
+                    Margin="133,0,0,0" VerticalAlignment="Center" Height="18"/>
+
+        </Grid>
+        <Grid Visibility="{Binding ChatViewVisible, FallbackValue=Hidden}"
+            HorizontalAlignment="Right" 
+            Width="800">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="310*"/>
+                <RowDefinition Height="160*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.Row="2">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{StaticResource ChatBackgroundColor}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <ScrollViewer Foreground="#2C2F33">
+                <Grid>
+                    <ListView Background="#2C2F33" DataContext="{Binding ChatBoxMessages}" ItemsSource="{Binding}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Height="Auto"
+                                           Style="{StaticResource TextBlockStyle}"
+                                           Foreground="White"
+                                           Background="#2C2F33">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}: {1}">
+                                                <Binding Path="Username"/>
+                                                <Binding Path="Message"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </ScrollViewer>
+            <Button Style="{StaticResource ButtonStyle}"
+                Content="Send" 
+                Command="{Binding SendCommand}"
+                HorizontalAlignment="Left" 
+                Margin="750,110,0,0" Grid.Row="1" 
+                VerticalAlignment="Top"/>
+            <TextBox Style="{StaticResource TextBoxStyle}"
+                 HorizontalAlignment="Center" 
+                 Margin="0,10,0,0" 
+                 Grid.Row="1" 
+                 Text="{Binding SendMessageBox}"
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="780" 
+                 Height="95"/>
+            <Button 
+                Style="{StaticResource ButtonStyle}"
+                Content="Buzz" 
+                Command="{Binding BuzzCommand}"
+                HorizontalAlignment="Left" 
+                Margin="687,110,0,0" 
+                Grid.Row="1" 
+                VerticalAlignment="Top"/>
+        </Grid>
+        
+        <Grid Visibility="{Binding HistoryViewVisible, FallbackValue=Hidden}"
+          HorizontalAlignment="Left" 
+          Width="800">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="520"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400*"/>
+            </Grid.RowDefinitions>
+
+            <!-- First container for list of users in chat history-->
+            <ScrollViewer Margin="0,0,0,64" Foreground="#2C2F33">
+                <ListView ItemsSource="{Binding ChatHistoryList}" SelectedItem="{Binding SelectedUserHistoryName}"
+                      Background="#242629"
+                      Foreground="White" 
+                      BorderBrush="#242629" 
+                      Margin="0,0,0,64"
+                      BorderThickness="2,2,10,2" 
+                      Grid.Column="0" Grid.Row="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                                <Grid>
+                                <TextBlock Height="Auto"
+                                           Style="{StaticResource TextBlockStyle}"
+                                           Foreground="White"
+                                           Text="{Binding}"
+                                           Background="#2C2F33">
+                                </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </ScrollViewer>
+
+            <Grid Grid.Row="2" Height="400" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="0" />
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <!-- Second container for chat history messages-->
+            <Grid Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch">
+            <ScrollViewer Foreground="#2C2F33">
+                <ItemsControl Background="#2C2F33" 
+                          ItemsSource="{Binding ChatBoxHistoryMessages}"
+                          BorderBrush="#242629" 
+                          BorderThickness="6,6,6,6">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock  Height="Auto"
+                                    Style="{StaticResource TextBlockStyle}"
+                                    Foreground="White">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0}: {1}">
+                                            <Binding Path="Username"/>
+                                            <Binding Path="Message"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

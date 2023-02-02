@@ -1,0 +1,21 @@
+{"messages":[
+{
+  "Ip": null,
+  "Time": "2021-12-14T17:49:51.8860452+01:00",
+  "Message": "Write your message here!asdasd",
+  "Username": "Anoasduin",
+  "Count": 0,
+  "ReadyToSend": false,
+  "Command": 0
+}
+,
+{
+  "Ip": null,
+  "Time": "2021-12-14T17:49:52.6616193+01:00",
+  "Message": "Write your message here!asdasd",
+  "Username": "Anoasduin",
+  "Count": 0,
+  "ReadyToSend": false,
+  "Command": 0
+}
+]}
